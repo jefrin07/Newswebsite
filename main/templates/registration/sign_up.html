@@ -1,0 +1,21 @@
+{% extends 'main/base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    body {
+        background: rgb(255, 255, 255);
+        overflow: hidden;
+    }
+</style>
+<div class="d-flex justify-content-center align-items-center bg-light" style="height: 100vh;">
+    <form method="post" class="col-md-4">
+        <h3 class="text-center"><b>Sign In.</b></h3>
+        {% csrf_token %}
+        {{ form|crispy }}
+        <p>Have an account? Login <a href="/login">Here</a>!</p>
+        <button type="submit" class="btn btn-success">Register</button>
+    </form>
+</div>
+{% endblock %}
+

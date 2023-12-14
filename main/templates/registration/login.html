@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block title %}Login{% endblock %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background: rgb(255, 255, 255);
+        overflow: hidden;
+    }
+</style>
+
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh;">
+    <div class="bg-light p-4 col-md-6 col-12">
+        <img src="{% static 'logo.jpg' %}" alt="Logo" style="width: 100px; height: 100px; display: block; margin: 0 auto 20px;" />
+        <form method="post">
+            <h3 class="text-center"><b>Login In.</b></h3>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <p>Don't have an account? Create one <a href="/sign-up">Here</a>!</p>
+            <button type="submit" class="btn btn-success">Login</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

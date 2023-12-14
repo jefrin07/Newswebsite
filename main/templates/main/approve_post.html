@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% block title %}Approve Post{% endblock %}
+{% block content %}
+    <h2>Post Approval</h2>
+    <div>
+        <h3>Title: {{ post.title }}</h3>
+        <p>Description: {{ post.description }}</p>
+        <p>Author: {{ post.author }}</p>
+        <!-- Any other post details you want to display -->
+    </div>
+    <div>
+        <form method="post" action="{% url 'approve_post' post.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="post_id" value="{{ post.id }}">
+            <button type="submit" class="btn btn-success">Approve</button>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+        </form>        
+    </div>
+{% endblock %}

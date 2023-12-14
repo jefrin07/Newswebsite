@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% block title %}Pending Requests{% endblock %}
+{% block content %}
+    <h2>Pending Requests</h2>
+    {% for post in pending_posts %}
+        <div class="card mt-2">
+            <!-- Your card layout for pending posts -->
+            <div class="card-header"><strong>@{{ post.author.username }}</strong></div>
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }}</h5>
+                <p>{{ post.description }}</p>
+            </div>
+            <div class="card-footer text-muted">
+                {{ post.created_at }}
+                <form method="post" action="{% url 'pending_posts' %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <button type="submit" class="btn btn-success">Approve</button>
+                </form>
+                <form method="post" action="{% url 'reject_post' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="post_id" value="{{ post.id }}">
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+        </div>
+    {% empty %}
+        <p>No pending requests</p>
+    {% endfor %}
+{% endblock %}

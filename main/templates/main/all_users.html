@@ -1,0 +1,25 @@
+{% extends 'main/base.html' %}
+{% block title %}Users{% endblock %}
+{% block content %}
+<div class="container">
+    <h3 class="mt-4">All Users</h3>
+    <table class="table table-bordered table-hover mt-4">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <!-- Add more table headers for additional user data -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.username }}</td>
+                <!-- Add more table cells for additional user data -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

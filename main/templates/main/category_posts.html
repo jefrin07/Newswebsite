@@ -1,0 +1,24 @@
+{% extends 'main/base.html' %}
+{% block title %}Posts in {{ category.name }}{% endblock %}
+{% block content %}
+
+<h1>Posts in {{ category.name }}</h1>
+
+{% for post in posts %}
+    <!-- Display posts based on the selected category -->
+    <div class="card mt-2">
+        <div class="card-header"><strong>{{ post.author.username }}</strong></div>
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p>{{ post.description }}</p>
+            <!-- Other post details -->
+        </div>
+        <div class="card-footer text-muted">
+            {{ post.created_at }}
+        </div>
+    </div>
+{% empty %}
+    <p>No posts in this category yet.</p>
+{% endfor %}
+
+{% endblock %}

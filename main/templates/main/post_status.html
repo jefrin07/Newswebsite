@@ -1,0 +1,34 @@
+{% extends 'main/base.html' %}
+{% block title %}POST | STATUS{% endblock %}
+{% block content %}
+    <h1>Posts Status</h1>
+    <div class="card mx-2 container">
+        {% if request.user.is_superuser %}
+            {% for post in all_posts %}
+                <div class="card-header bg-warning">
+                    <strong>Username:</strong> {{ post.author.username }}
+                </div>
+                <div class="card-body">
+                <span><strong>Title:</strong> {{ post.title }}</span> <br>
+                    <span><strong>Status:</strong> {{ post.status }}</span>
+                 </div>
+                <hr>
+            {% empty %}
+                <p>No posts found.</p>
+            {% endfor %}
+        {% else %}
+            {% for post in user_posts %}
+                    <div class="card-header">
+                        <span><strong>Created By: </strong>{{ post.author.username }}</span> 
+                     </div>
+                     <div class="card-body">
+                         <span><strong>Title:</strong> {{ post.title }}</span><br> 
+                        <span><strong>Status:</strong> {{ post.status }}</span><br> 
+                        <span><strong>Created At:</strong> {{ post.created_at }}</span> 
+                </div>
+            {% empty %}
+                <p>No posts found.</p>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}
